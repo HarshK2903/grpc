@@ -1,6 +1,7 @@
 package main
 
 import (
+	pb "grpc/protoc"
 	"log"
 
 	"google.golang.org/grpc"
@@ -12,11 +13,12 @@ const (
 )
 
 func main() {
-	conn, err := grpc.Dial("localhost"+port, grpc.WithTransportCredentials(insecure.NewCredentials()))
+	conn, err := grpc.NewClient("localhost"+port, grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		log.Fatalf("did not connect %v", err)
 	}
 
 	defer conn.Close()
-
+	client := pb.NewGreetServiceClient(conn)
+	callSayHello(client)
 }
