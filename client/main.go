@@ -19,6 +19,10 @@ func main() {
 	}
 
 	defer conn.Close()
+	names := &pb.NameList{
+		Names: []string{"Harsh", "Kumar"},
+	}
 	client := pb.NewGreetServiceClient(conn)
-	callSayHello(client)
+	// callSayHello(client)
+	callSayHelloServerStreaming(client, names)
 }
