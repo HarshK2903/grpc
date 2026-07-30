@@ -24,5 +24,6 @@ func main() {
 	}
 	client := pb.NewGreetServiceClient(conn)
 	// callSayHello(client)
-	callSayHelloServerStreaming(client, names)
+	// callSayHelloServerStreaming(client, names)
+	callSayHelloClientStreaming(client, names)
 }
